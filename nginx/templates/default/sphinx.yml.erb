@@ -1,0 +1,10 @@
+<%= @deploy[:rails_env] %>:
+  pid_file: /var/run/sphinx/<%= @application %>.pid
+  address: <%= @host %>
+  port: <%= node[:sphinx][:port] %>
+  mem_limit: <%= node[:sphinx][:memory_limit] %>
+  config_file: <%= @deploy[:deploy_to] %>/current/config/thinkingsphinx/<%= @deploy[:rails_env] %>.sphinx.conf
+  searchd_file_path: /var/log/sphinx/<%= @application %>/indexes
+  searchd_log_file: /var/log/sphinx/<%= @application %>/searchd.log
+  query_log_file: /var/log/sphinx/<%= @application %>/query.log
+
