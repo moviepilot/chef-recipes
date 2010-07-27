@@ -5,6 +5,6 @@ description       "Installs and configures Nginx"
 long_description  "Will install Nginx web server from source"
 version           "0.1"
 recipe            "nginx::install", "Installs packages required for Nginx servers"
-recipe            "nginx::deploy", "Deploys Nginx server configuration"
+recipe            "nginx::deploy", "Deploys Nginx server configurationq"
 
 supports 'ubuntu'
