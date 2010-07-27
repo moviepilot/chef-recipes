@@ -18,11 +18,11 @@ execute "untar mongodb archive" do
   cwd "/tmp/mongodb_install"
 end
 
-execute "mv /tmp/mongodb_install/#{node[:mongodb][:package_name]} /opt/#{node[:mongodb][:package_name]} " do
-  cwd "/tmp/mongodb_install/mongodb-#{node[:mongodb][:version]}"
+execute "mv /tmp/mongodb_install/#{node[:mongodb][:dir_name]} /opt/#{node[:mongodb][:dir_name]} " do
+  cwd "/tmp/mongodb_install"
 end
 
-execute "ln -s /opt/#{node[:mongodb][:package_name]} /opt/mongodb" do
+execute "ln -s /opt/#{node[:mongodb][:dir_name]} /opt/mongodb" do
   cwd "/opt"
 end
 
