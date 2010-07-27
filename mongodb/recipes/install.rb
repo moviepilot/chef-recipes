@@ -26,3 +26,17 @@ execute "ln -s /opt/#{node[:mongodb][:dir_name]} /opt/mongodb" do
   cwd "/opt"
 end
 
+template "/etc/init.d/mongod" do
+  source "init-script"
+  owner "root"
+  group "root"
+  mode "0755"
+end
+
+execute "update-rc.d mongod defaults" do
+  cwd "/"
+end
+
+execute "/etc/init.d/mongod start" do
+  cwd "/"
+end
