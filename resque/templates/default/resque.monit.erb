@@ -1,0 +1,9 @@
+<% 1.upto(node[:resque][:workers].to_i) do |worker| %>
+check process resque_worker_<%= @application %><%= @queues_slug %>_<%= worker %>
+  with pidfile <%= @deploy[:deploy_to] %>/current/tmp/pids/resque_worker<%= @queues_slug %>_<%= worker %>.pid
+  start program = "/usr/local/sbin/resquectl start <%= @deploy[:deploy_to] %> <%= @deploy[:rails_env] %> '<%= node[:resque][:queues] %>' <%= @queues_slug != "" ? "#{@queues_slug}_#{worker}" : worker %>" as uid <%= @deploy[:user] %> and gid <%= @deploy[:group] %>
+  stop program = "/usr/local/sbin/resquectl stop <%= @deploy[:deploy_to] %> <%= @queues_slug != "" ? "#{@queues_slug}_#{worker}" : worker %>"
+  if totalmem is greater than <%= node[:resque][:max_memory] %> MB for 10 cycles then restart
+  group resque_workers_<%= @application %>
+
+<% end %>

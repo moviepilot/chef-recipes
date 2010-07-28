@@ -1,0 +1,28 @@
+#!/bin/sh
+
+app=$2
+
+cd $app/current
+
+case "$1" in
+  start)
+    env=$3
+    queues=$4
+    worker=$5
+    export RAILS_ENV=$env
+    export QUEUE=$queues
+    export VERBOSE=1
+
+    nohup /usr/local/bin/rake environment resque:work >> log/resque_worker_$worker.log&
+    pid=$!
+    if [ "$?" -eq "0" ]; then
+      echo $pid > tmp/pids/resque_worker_$worker.pid
+    fi
+    ;;
+  stop)
+    worker=$3
+    kill -s QUIT `cat tmp/pids/resque_worker_$worker.pid` && rm -f tmp/pids/resque_worker_$worker.pid
+    ;;
+esac
+
+exit 0
