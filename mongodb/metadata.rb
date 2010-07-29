@@ -6,5 +6,6 @@ long_description  "Will set install MongoDbserver and set it up"
 version           "0.1"
 recipe            "mongodb::install", "Installs packages required for MongoDb servers"
 recipe            "mongodb::deploy", "Deploys Varnish Configuration"
+recipe            "mongodb::configure", "Maintain MongoDB database access information"
 
 supports 'ubuntu'
