@@ -26,8 +26,8 @@ execute "ln -s /opt/#{node[:mongodb][:dir_name]} /opt/mongodb" do
   cwd "/opt"
 end
 
-remote_file "/etc/init.d/mongod" do
-  source "init-script"
+template "/etc/init.d/mongod" do
+  source "init-script.erb"
   owner "root"
   group "root"
   mode "0755"
