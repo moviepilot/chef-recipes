@@ -26,7 +26,7 @@ execute "ln -s /opt/#{node[:mongodb][:dir_name]} /opt/mongodb" do
   cwd "/opt"
 end
 
-template "/etc/init.d/mongod" do
+remote_file "/etc/init.d/mongod" do
   source "init-script"
   owner "root"
   group "root"
