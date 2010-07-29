@@ -1,0 +1,5 @@
+check process mongodb with pidfile <%= node[:mongodb][:pidfile] %>
+  start program "/etc/init.d/mongod start"
+  stop program "/etc/init.d/mongod stop"
+  if failed port <%= node[:mongodb][:port] %> then restart
+  if 5 restarts within 5 cycles then timeout

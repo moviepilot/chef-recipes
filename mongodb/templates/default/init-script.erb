@@ -21,11 +21,11 @@
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
 DESC="MongoDb"
 NAME=mongod
-DBPATH="/var/mongodb"
+DBPATH="<%= node[:mongodb][:db_directory] %>"
 LOGPATH="/var/log/mongod.log"
 DAEMON=/opt/mongodb/bin/$NAME
 DAEMON_ARGS="--dbpath ${DBPATH} --fork --logpath ${LOGPATH} --port <%= node[:mongodb][:port] %>"
-PIDFILE=${DBPATH}/mongod.lock
+PIDFILE="<%= node[:mongodb][:pidfile] %>"
 SCRIPTNAME=/etc/init.d/$NAME
 
 # Exit if the package is not installed
