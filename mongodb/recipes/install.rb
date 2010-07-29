@@ -14,7 +14,7 @@ remote_file "/tmp/mongodb_install/#{node[:mongodb][:package_name]}" do
 end
 
 execute "untar mongodb archive" do
- command "tar xvfz #{node[:mongodb][:package_name]}"
+  command "tar xvfz #{node[:mongodb][:package_name]}"
   cwd "/tmp/mongodb_install"
 end
 
