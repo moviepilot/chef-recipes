@@ -21,10 +21,10 @@
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
 DESC="MongoDb"
 NAME=mongod
-DBPATH="/tmp"
+DBPATH="/var/mongodb"
 LOGPATH="/var/log/mongod.log"
 DAEMON=/opt/mongodb/bin/$NAME
-DAEMON_ARGS="--dbpath ${DBPATH} --fork --logpath ${LOGPATH}"
+DAEMON_ARGS="--dbpath ${DBPATH} --fork --logpath ${LOGPATH} --port <%= node[:mongodb][:port] %>"
 PIDFILE=${DBPATH}/mongod.lock
 SCRIPTNAME=/etc/init.d/$NAME
 
