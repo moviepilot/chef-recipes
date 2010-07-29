@@ -1,0 +1,9 @@
+defaults: &defaults
+  adapter: mongodb
+
+# set these environment variables on your prod server
+production:
+  <<: *defaults
+  host: <%= @host %>
+  port: <%= @port %>
+  database: <%= @database %>
