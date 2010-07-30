@@ -3,7 +3,7 @@ include_recipe "application::directory"
 
 node[:deploy].each do |application, deploy|
   # create shared/ directory structure
-  %w(log config system pids bundle).each do |dir_name|
+  %w(log config system pids).each do |dir_name|
     directory "#{deploy[:deploy_to]}/shared/#{dir_name}" do
       group deploy[:group]
       owner deploy[:user]
@@ -14,4 +14,4 @@ node[:deploy].each do |application, deploy|
   end
 end
 
-include_recipe "application::checkout"
+include_recipe "application::deploy"
