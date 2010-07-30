@@ -15,7 +15,7 @@ DAEMON="<%= node[:nginx_appserver][:root_dir] %>/sbin/nginx"
 DAEMON_OPTS="-c <%= node[:nginx_appserver][:config_dir] %>/nginx.conf"
 NAME=nginx
 DESC=nginx
-PID=/opt/nginx/logs/nginx.pid
+PID="<%= node[:nginx_appserver][:pid_file] %>"
 
 test -x $DAEMON || exit 0
 
