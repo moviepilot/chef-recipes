@@ -1,25 +1,32 @@
 gem_package 'passenger' do
-  version node[:resque][:version]
+  version node[:nginx_appserver][:version]
 end
 
 execute "passenger_module" do
   command 'echo -en "\n1\n\n\n" | passenger-install-nginx-module'
 end
 
-directory "#{node[:nginx_appserver][:log_dir]}" do
-  owner   node[:nginx_appserver][:user]
-  mode    0755
-  command :create_if_not_exists
+[ :log_dir, :cache_dir, :config_dir ].each do |dir_name|
+  directory node[:nginx_appserver][dir_name] do
+    owner   node[:nginx_appserver][:user]
+    mode    0755
+    action  :create
+  end
 end
 
-template "init-script" do
-  path   "/etc/init.d/nginx"
+template "/etc/init.d/nginx" do
   source "init-script.erb"
-  owner  "root"
-  group  "root"
   mode    0644
 end
 
-template "nginx-config" do
-  
+template "#{node[:nginx_appserver][:config_dir]}/nginx.conf" do
+  source "nginx.conf.erb"
+  owner  node[:nginx_appserver][:user]
+  mode   0644
 end
+
+template "/etc/monit/conf.d/nginx_appserver.monitrc" do
+  source "nginx.monitrc.erb"
+  mode   0644
+end
+
