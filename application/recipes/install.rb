@@ -1,4 +1,5 @@
-include_recipe "deploy::user"
+include_recipe "application::user"
+include_recipe "application::directory"
 
 node[:deploy].each do |application, deploy|
   # create shared/ directory structure
@@ -13,4 +14,4 @@ node[:deploy].each do |application, deploy|
   end
 end
 
-include_recipe "deploy::source"
+include_recipe "application::checkout"
