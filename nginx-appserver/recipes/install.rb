@@ -16,7 +16,7 @@ end
 
 template "/etc/init.d/nginx" do
   source "init-script.erb"
-  mode    0644
+  mode    0755
 end
 
 template "#{node[:nginx_appserver][:config_dir]}/nginx.conf" do
