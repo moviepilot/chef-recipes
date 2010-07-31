@@ -1,0 +1,6 @@
+check process sunspot_solr
+  with pidfile <%= node[:sunspot_solr][:pids] %>/sunspot-solr.pid with timeout 60 seconds
+  start program = "<%= %Q{/usr/local/bin/sunspot-solr start --port=#{node[:sunspot_solr][:port]} --pid-dir=#{node[:sunspot_solr][:pids]} --data-directory=#{node[:sunspot_solr][:home]} --min-memory=#{node[:sunspot_solr][:min_memory]} --max-memory=#{node[:sunspot_solr][:max_memory]} --log-file=#{node[:sunspot_solr][:log]}/solr.log --log-level=#{node[:sunspot_solr][:log_level]}} %>" as uid <%= node[:sunspot_solr][:user] %> and gid users 
+  stop program = "/usr/local/bin/sunspot-solr stop" as uid <%= node[:sunspot_solr][:user] %> and gid users
+  if totalmem is greater than <%= node[:sunspot_solr][:monit_mem_limit] %> MB for 2 cycles then restart
+  group solr
