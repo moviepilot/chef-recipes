@@ -7,8 +7,8 @@ node[:deploy].each do |application, deploy|
   #    command "gem install #{gem_file} --no-ri --no-rdoc -q"
   #  end
   #end
-  execute "gem install #{deploy[:current_path]}/vendor/gems/*.gem" do
-	  command "gem install #{deploy[:current_path]}/vendor/gems/*.gem"
+  execute "gem install #{deploy[:current_path]}/vendor/gems/*.gem --no-ri --no-rdoc" do
+	  command "gem install #{deploy[:current_path]}/vendor/gems/*.gem --no-ri --no-rdoc"
   end
   execute "bundle" do
     cwd deploy[:release_path]
