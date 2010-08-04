@@ -27,11 +27,6 @@ template "#{node[:nginx_appserver][:config_dir]}/nginx.conf" do
   mode   0644
 end
 
-template "#{node[:nginx_appserver][:vhost_dir]}/site-moviepilot" do
-  source "site-moviepilot.nginx.erb"
-  owner  node[:nginx_appserver][:user]
-  mode   0644
-end
 
 template "/etc/monit/conf.d/nginx_appserver.monitrc" do
   source "nginx.monitrc.erb"

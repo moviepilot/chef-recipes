@@ -13,6 +13,3 @@ deploy.each do |application, deploy|
   default[:deploy][application][:rails_env]       = 'production'
   default[:deploy][application][:sleep_before_restart] = 0
 end
-
-
-

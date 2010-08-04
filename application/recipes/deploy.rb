@@ -14,4 +14,10 @@ node[:deploy].each do |application, deploy|
     cwd deploy[:release_path]
     command "cd #{deploy[:current_path]} && bundle install --without test:development"
   end
+
+  #template "#{node[:nginx_appserver][:vhost_dir]}/site-moviepilot" do
+  #  source "site-moviepilot.nginx.erb"
+  #  owner  node[:nginx_appserver][:user]
+  #  mode   0644
+  #end
 end
