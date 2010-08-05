@@ -9,8 +9,8 @@ node[:deploy].each do |application, deploy|
  
   solr_server = node[:scalarium][:roles][:solr][:instances].collect{|instance, names| names["private_dns_name"]}.first
 
-  template "#{deploy[:current_path]}/config/sunspot.yml" do
-    source "sunspot.yml.erb"
+  template "#{deploy[:current_path]}/config/discovery.yml" do
+    source "discovery.yml.erb"
     mode "0660"
     group deploy[:group]
     owner deploy[:user]
