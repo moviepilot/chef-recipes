@@ -1,5 +1,4 @@
 include_recipe "deploy" # get the deployment attributes
-include_recipe "nginx-appserver" # get the nginx attributes
 
 node[:deploy].each do |application, deploy|
   if deploy[:application_type] != 'rails'
