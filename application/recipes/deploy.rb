@@ -16,4 +16,8 @@ node[:deploy].each do |application, deploy|
   execute "create symbolic link to mongodb config" do
     command "ln -sf #{node[:mongodb][:mongodb_config]} #{deploy[:discovery_config]}"
   end
+
+  execute "create symbolic link to resque config" do
+    command "ln -sf #{node[:resque][:resque_config]} #{deploy[:resque_config]}"
+  end
 end

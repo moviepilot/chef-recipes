@@ -15,7 +15,11 @@ node[:deploy].each do |application, deploy|
   
   redis_server = node[:scalarium][:roles][:redis][:instances].keys.first
   
-  template "#{deploy[:deploy_to]}/current/config/resque.yml" do
+  execute "create config directory" do
+    command "mkdir -p #{node[:resque][:resque_config].gsub(/\/[^\/]+$/, '')}"
+  end
+
+  template node[:resque][:resque_config] do
     source "resque.yml.erb"
     mode "0660"
     group deploy[:group]

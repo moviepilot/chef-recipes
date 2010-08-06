@@ -15,4 +15,5 @@ deploy.each do |application, deploy|
   default[:deploy][application][:config_dir]      = "#{deploy[:current_path]}/config"
   default[:deploy][application][:mongodb_config]  = "#{deploy[:config_dir]}/discovery.yml"
   default[:deploy][application][:discovery_config]  = "#{deploy[:config_dir]}/database.mongo.yml"
+  default[:deploy][application][:resque_config]  = "#{deploy[:config_dir]}/resque.yml"
 end
