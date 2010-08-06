@@ -14,7 +14,7 @@ node[:deploy].each do |application, deploy|
     group deploy[:group]
     owner deploy[:user]
     variables :host => node[:scalarium][:roles][:raisin][:instances][raisin_server][:private_dns_name],
-              :port => node[:raisin][:port],
+              :port => node[:raisin][:port]
     
     notifies :run, resources(:execute => "restart Rails app #{application}")
     
