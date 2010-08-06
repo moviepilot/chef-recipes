@@ -9,4 +9,4 @@ default[:sunspot_solr][:pids] = '/var/run/solr'
 default[:sunspot_solr][:min_memory] = '256M'
 default[:sunspot_solr][:max_memory] = '1024M'
 default[:sunspot_solr][:monit_mem_limit] = '1024'
-default[:sunspot_solr][:discovery_config] = "/etc/rails/sunspot-solr/discovery.yml"
+default[:sunspot_solr][:discovery_config] = "/etc/rails/discovery.yml"

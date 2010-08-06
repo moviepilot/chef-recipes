@@ -9,7 +9,11 @@ node[:deploy].each do |application, deploy|
  
   solr_server = node[:scalarium][:roles][:solr][:instances].collect{|instance, names| names["private_dns_name"]}.first
 
-  template "#{node[:sunspot_solr][:discovery_config]}" do
+  execute "create config directory" do
+    command "mkdir -p #{node[:sunspot_solr][:discovery_config].gsub(/\/[^\/]+$/, '')}"
+  end
+
+  template "#{node[:sunspot_solr][:discovery_config]}/#{node[application][:discovery_config]}" do
     source "discovery.yml.erb"
     mode "0660"
     group deploy[:group]
