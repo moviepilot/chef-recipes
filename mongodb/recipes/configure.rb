@@ -14,7 +14,12 @@ node[:deploy].each do |application, deploy|
   
   mongo_server = node[:scalarium][:roles][:mongodb][:instances].keys.first
   
-  template "#{deploy[:deploy_to]}/current/config/database.mongo.yml" do
+
+  execute "create config directory" do
+    command "mkdir -p #{node[:mongodb][:mongodb_config].gsub(/\/[^\/]+$/, '')}"
+  end
+
+  template "#{node[:mongodb][:mondodb_config]}" do
     source "database.mongo.yml.erb"
     mode "0660"
     group deploy[:group]

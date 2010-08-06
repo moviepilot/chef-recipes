@@ -12,4 +12,7 @@ deploy.each do |application, deploy|
   default[:deploy][application][:mp_document_root]   = "#{deploy[:deploy_to]}/current/public"
   default[:deploy][application][:rails_env]       = 'production'
   default[:deploy][application][:sleep_before_restart] = 0
+  default[:deploy][application][:config_dir]      = "#{deploy[:current_path]}/config"
+  default[:deploy][application][:mongodb_config]  = "#{deploy[:config_dir]}/discovery.yml"
+  default[:deploy][application][:discovery_config]  = "#{deploy[:config_dir]}/discovery_config.yml"
 end
