@@ -1,6 +1,6 @@
 default[:deploy] = {}
 
-application = "moviepilot-i18n"
+application = "moviepilot_i18n"
 
 default[:deploy][application] = Mash.new
 default[:deploy][application][:scm] = {}
