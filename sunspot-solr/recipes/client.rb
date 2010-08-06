@@ -13,7 +13,7 @@ node[:deploy].each do |application, deploy|
     command "mkdir -p #{node[:sunspot_solr][:discovery_config].gsub(/\/[^\/]+$/, '')}"
   end
 
-  template "#{node[:sunspot_solr][:discovery_config]}/#{node[application][:discovery_config]}" do
+  template "#{node[:sunspot_solr][:discovery_config]}" do
     source "discovery.yml.erb"
     mode "0660"
     group deploy[:group]
