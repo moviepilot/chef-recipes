@@ -13,7 +13,7 @@ node[:deploy].each do |application, deploy|
   end
 
   execute "create pid dir" do
-    command "mkdir -p #{deploy[:current_path]/pids"
+    command "mkdir -p #{deploy[:current_path]}/pids"
   end
 
   execute "stop raisin if it's running" do
