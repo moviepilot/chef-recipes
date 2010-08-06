@@ -14,5 +14,5 @@ deploy.each do |application, deploy|
   default[:deploy][application][:sleep_before_restart] = 0
   default[:deploy][application][:config_dir]      = "#{deploy[:current_path]}/config"
   default[:deploy][application][:mongodb_config]  = "#{deploy[:config_dir]}/discovery.yml"
-  default[:deploy][application][:discovery_config]  = "#{deploy[:config_dir]}/discovery_config.yml"
+  default[:deploy][application][:discovery_config]  = "#{deploy[:config_dir]}/database.mongo.yml"
 end
