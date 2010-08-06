@@ -9,7 +9,7 @@ node[:deploy].each do |application, deploy|
 
   execute "build raisin" do
     cwd deploy[:current_path]
-    command "./script/build.sh #{deploy[:current_path]}"
+    command "./script/build.sh #{deploy[:current_path]} || : "
   end
 
   execute "create pid dir" do
@@ -18,11 +18,11 @@ node[:deploy].each do |application, deploy|
 
   execute "stop raisin if it's running" do
     cwd deploy[:current_path]
-    command "./script/stop_raisin_manager.sh #{deploy[:current_path]} 80"
+    command "./script/stop_raisin_manager.sh #{deploy[:current_path]} #{deploy[:port]}"
   end
 
   execute "start raisin" do
     cwd deploy[:current_path]
-    command "./script/start_raisin_manager.sh #{deploy[:current_path]} 80"
+    command "./script/start_raisin_manager.sh #{deploy[:current_path]} #{deploy[:port]}"
   end
 end
