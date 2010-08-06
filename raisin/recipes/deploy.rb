@@ -7,6 +7,6 @@ node[:deploy].each do |application, deploy|
   #
   execute "build raisin" do
     cwd deploy[:current_path]
-    command "./script/build.sh ."
+    command "./script/build.sh #{deploy[:current_path]}"
   end
 end
