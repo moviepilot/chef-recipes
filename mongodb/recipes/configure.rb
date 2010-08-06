@@ -19,7 +19,7 @@ node[:deploy].each do |application, deploy|
     command "mkdir -p #{node[:mongodb][:mongodb_config].gsub(/\/[^\/]+$/, '')}"
   end
 
-  template "#{node[:mongodb][:mondodb_config]}" do
+  template "#{node[:mongodb][:mongodb_config]}" do
     source "database.mongo.yml.erb"
     mode "0660"
     group deploy[:group]
