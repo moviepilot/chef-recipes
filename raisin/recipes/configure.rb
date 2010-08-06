@@ -5,6 +5,9 @@ node[:deploy].each do |application, deploy|
     command "mkdir -p #{node[:raisin][:config_file].gsub(/\/[^\/]+$/, '')}"
   end
 
+  raisin_server = node[:scalarium][:roles][:raisin][:instances].keys.first
+
+
   template "#{node[:raisin][:config_file]}" do
     source "raisin.yml.erb"
     mode "0660"
