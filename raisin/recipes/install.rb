@@ -1,5 +1,12 @@
 include_recipe "raisin::user"
 include_recipe "raisin::directory"
+package "openjdk-6-dbg"
+package "openjdk-6-jre"
+package "openjdk-6-jdk"
+package "openjdk-6-jre-lib"
+package "openjdk-6-jre-headless"
+package "openjdk-6-jre-headless"
+package "maven2"
 
 node[:deploy].each do |application, deploy|
   # create shared/ directory structure
