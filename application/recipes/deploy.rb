@@ -22,4 +22,8 @@ node[:deploy].each do |application, deploy|
   execute "create symbolic link to resque config" do
     command "ln -sf #{node[:resque][:resque_config]} #{deploy[:resque_config]}"
   end
+
+  execute "create symbolic link to raisin config" do
+    command "ln -sf #{node[:raisin][:config_file]} #{deploy[:raisin_config]}"
+  end
 end
