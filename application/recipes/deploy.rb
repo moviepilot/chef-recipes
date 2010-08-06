@@ -11,6 +11,7 @@ node[:deploy].each do |application, deploy|
 
   execute "create symbolic link to discovery config" do
     command "ln -sf #{node[:sunspot_solr][:discovery_config]} #{deploy[:mongodb_config]}"
+  end
 
   execute "create symbolic link to mongodb config" do
     command "ln -sf #{node[:mongodb][:mongodb_config]} #{deploy[:discovery_config]}"
