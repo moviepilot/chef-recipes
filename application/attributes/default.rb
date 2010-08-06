@@ -3,6 +3,8 @@ default[:deploy] = {}
 application = "moviepilot_i18n"
 
 default[:deploy][application] = Mash.new
+deploy = default[:deploy][application]
+
 default[:deploy][application][:scm] = {}
 default[:deploy][application][:scm][:scm_type]  = "git"
 default[:deploy][application][:scm][:revision]  = "HEAD"
