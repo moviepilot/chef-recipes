@@ -5,6 +5,8 @@ node[:deploy].each do |application, deploy|
   #  command "ln -sf #{node[:resque][:resque_config]} #{deploy[:resque_config]}"
   #end
   #
+  next if deploy[:application] != "raisin"
+
   execute "build raisin" do
     cwd deploy[:current_path]
     command "./script/build.sh #{deploy[:current_path]}"
