@@ -12,11 +12,16 @@ node[:deploy].each do |application, deploy|
     action :nothing
   end
   
-  mongo_server = node[:scalarium][:roles][:mongodb][:instances].keys.first
+   mongo_server = node[:scalarium][:roles][:mongodb][:instances].keys.first rescue nil
+ 
   
 
   execute "create config directory" do
-    command "mkdir -p #{node[:mongodb][:mongodb_config].gsub(/\/[^\/]+$/, '')}"
+    command "mkdir -p #{node[:mongodb][:mongodb_config].gsub(/\/[^\/]+$/, '')}" 
+
+    only_if do
+      File.directory?("#{deploy[:deploy_to]}/current") && mongo_server
+    end
   end
 
   template "#{node[:mongodb][:mongodb_config]}" do
@@ -31,7 +36,7 @@ node[:deploy].each do |application, deploy|
     notifies :run, resources(:execute => "restart Rails app #{application}")
     
     only_if do
-      File.directory?("#{deploy[:deploy_to]}/current")
+      File.directory?("#{deploy[:deploy_to]}/current") && mongo_server
     end
   end
 end
