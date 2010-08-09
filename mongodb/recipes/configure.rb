@@ -14,6 +14,7 @@ node[:deploy].each do |application, deploy|
   
    mongo_server = node[:scalarium][:roles][:mongodb][:instances].keys.first rescue nil
  
+  next unless mongo_server  # don't abort if we don't have a mongo instance running yet
   
 
   execute "create config directory" do
