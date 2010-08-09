@@ -14,6 +14,16 @@ execute "setting sun java as default java home in /etc/environment" do
 end
 
 package "sun-java6-jdk"
+
+execute "setting sun java as default via update-alternatives" do
+	command "update-alternatives --set java /usr/lib/jvm/java-6-sun/jre/bin/java"
+end
+
+execute "setting sun javac as default via update-alternatives" do
+	command "update-alternatives --set javac /usr/lib/jvm/java-6-sun/bin/javac"
+end
+
+
 package "maven2"
 
 node[:deploy].each do |application, deploy|
