@@ -9,6 +9,10 @@ execute "aggreeing to java licencse" do
 	command "echo 'sun-java6-jdk shared/accepted-sun-dlj-v1-1 boolean true' | debconf-set-selections"
 end
 
+execute "setting sun java as default java home in /etc/environment" do
+	command "echo 'JAVA_HOME=/usr/lib/jvm/java-6-sun/' >> /etc/environment"
+end
+
 package "sun-java6-jdk"
 package "maven2"
 
