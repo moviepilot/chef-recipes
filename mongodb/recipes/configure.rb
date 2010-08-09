@@ -18,13 +18,12 @@ node[:deploy].each do |application, deploy|
 
   execute "create config directory" do
     command "mkdir -p #{node[:mongodb][:mongodb_config].gsub(/\/[^\/]+$/, '')}" 
-
-    only_if do
-      File.directory?("#{deploy[:deploy_to]}/current") && mongo_server
-    end
   end
 
   template "#{node[:mongodb][:mongodb_config]}" do
+    only_if do
+      File.directory?("#{deploy[:deploy_to]}/current") && mongo_server
+    end
     source "database.mongo.yml.erb"
     mode "0660"
     group deploy[:group]
@@ -35,8 +34,5 @@ node[:deploy].each do |application, deploy|
     
     notifies :run, resources(:execute => "restart Rails app #{application}")
     
-    only_if do
-      File.directory?("#{deploy[:deploy_to]}/current") && mongo_server
-    end
   end
 end
