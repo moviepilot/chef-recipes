@@ -1,8 +1,25 @@
-package "openjdk-6-dbg"
-package "openjdk-6-jre"
-package "openjdk-6-jdk"
-package "openjdk-6-jre-lib"
-package "openjdk-6-jre-headless"
+execute "yes sun: we fully agree" do
+	command "echo 'sun-java6-jre shared/accepted-sun-dlj-v1-1 boolean true' | debconf-set-selections"
+end
+
+execute "aggreeing to java licencse" do
+	command "echo 'sun-java6-jdk shared/accepted-sun-dlj-v1-1 boolean true' | debconf-set-selections"
+end
+
+execute "setting sun java as default java home in /etc/environment" do
+	command "echo 'JAVA_HOME=/usr/lib/jvm/java-6-sun/' >> /etc/environment"
+end
+
+package "sun-java6-jdk"
+
+execute "setting sun java as default via update-alternatives" do
+	command "update-alternatives --set java /usr/lib/jvm/java-6-sun/jre/bin/java"
+end
+
+execute "setting sun javac as default via update-alternatives" do
+	command "update-alternatives --set javac /usr/lib/jvm/java-6-sun/bin/javac"
+end
+
 
 user node[:sunspot_solr][:user] do
   gid 'users'
