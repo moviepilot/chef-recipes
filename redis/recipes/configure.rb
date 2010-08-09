@@ -8,7 +8,9 @@ node[:deploy].each do |application, deploy|
     action :nothing
   end
   
-  redis_server = node[:scalarium][:roles][:redis][:instances].keys.first
+  redis_server = node[:scalarium][:roles][:redis][:instances].keys.first rescue nil
+
+  next unless redis_server  # don't abort if we don't have a redis instance running yet
   
   template "#{deploy[:deploy_to]}/current/config/redis.yml" do
     source "redis.yml.erb"
