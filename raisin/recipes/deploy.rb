@@ -14,11 +14,11 @@ node[:deploy].each do |application, deploy|
 
   execute "stop raisin if it's running" do
     cwd deploy[:current_path]
-    command "./script/stop_raisin_manager.sh #{deploy[:current_path]} #{default[:raisin][:port]}"
+    command "./script/stop_raisin_manager.sh #{deploy[:current_path]} #{node[:raisin][:port]}"
   end
 
   execute "start raisin" do
     cwd deploy[:current_path]
-    command "./script/start_raisin_manager.sh #{deploy[:current_path]} #{default[:raisin][:port]}"
+    command "./script/start_raisin_manager.sh #{deploy[:current_path]} #{node[:raisin][:port]}"
   end
 end
