@@ -7,7 +7,7 @@ package "openjdk-6-jre-headless"
 user node[:sunspot_solr][:user] do
   gid 'users'
   home '/var/lib/solr'
-  shell '/bin/zsh'
+  shell '/bin/sh'
   action :create
 end
 
