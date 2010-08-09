@@ -18,7 +18,7 @@ node[:deploy].each do |application, deploy|
 
   execute "stop raisin if it's running" do
     cwd deploy[:current_path]
-    command "./script/stop_raisin_manager.sh #{deploy[:current_path]} #{deploy[:port]}"
+    command "./script/stop_raisin_manager.sh #{deploy[:current_path]} #{raisin[:port]}"
   end
 
   execute "start raisin" do
