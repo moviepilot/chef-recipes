@@ -12,7 +12,7 @@ node[:deploy].each do |application, deploy|
     action :nothing
   end
   
-   memcached_upstream_server = node[:scalarium][:roles][:memcached_upstream][:instances].keys.first rescue nil
+   memcached_upstream_server = node[:scalarium][:roles][:"memcached-upstream"][:instances].keys.first rescue nil
  
   next unless memcached_upstream_server  # don't abort if we don't have a memcached_upstream instance running yet
   
@@ -29,7 +29,7 @@ node[:deploy].each do |application, deploy|
     mode "0660"
     group deploy[:group]
     owner deploy[:user]
-    variables :host => node[:scalarium][:roles][:memcached_upstream][:instances][memcached_upstream_server][:private_dns_name],
+    variables :host => node[:scalarium][:roles][:"memcached-upstream"][:instances][memcached_upstream_server][:private_dns_name],
               :port => node[:memcached_upstream][:port]
     
     notifies :run, resources(:execute => "restart Rails app #{application}")
