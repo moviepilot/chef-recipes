@@ -9,3 +9,4 @@ default[:memcached_upstream][:log_dir] = '/var/log/memcached-upstream'
 default[:memcached_upstream][:logfile] = '/var/log/memcached-upstream/memcached-upstream.log' 
 default[:memcached_upstream][:memory_limit] = "2048"
 default[:memcached_upstream][:port] = "11211"
+default[:memcached_upstream][:memcached_upstream_config] = "/etc/rails/memcached-upstream.yml"

@@ -23,6 +23,10 @@ node[:deploy].each do |application, deploy|
     command "ln -sf #{node[:resque][:resque_config]} #{deploy[:resque_config]}"
   end
 
+  execute "create symbolic link to memcache config" do
+    command "ln -sf #{node[:memcached_upstream][:memcached_upstream_config]} #{deploy[:memcached_upstream_config]}"
+  end
+
   execute "create symbolic link to raisin config" do
     command "ln -sf #{node[:raisin][:config_file]} #{deploy[:raisin_config]}"
   end
