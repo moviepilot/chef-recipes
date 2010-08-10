@@ -58,7 +58,7 @@ template "/etc/monit/conf.d/memcached-upstream.monitrc" do
 end
 
 template "/opt/memcached-upstream/bin/start-memcached" do
-  source "start-memcached.erb
+  source "start-memcached.erb"
   owner "root"
   group "root"
   mode  "0755"
