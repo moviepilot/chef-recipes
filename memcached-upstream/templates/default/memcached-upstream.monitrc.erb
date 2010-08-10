@@ -1,5 +1,5 @@
-check process memcached with pidfile <%= node[:memcached_upstream][:pidfle] %>
-  group memcache
+check process memcached-upstream with pidfile <%= node[:memcached_upstream][:pidfile] %>
+  group memcached-upstream
   start program = "/etc/init.d/memcached-upstream start"
   stop  program = "/etc/init.d/memcached-upstream stop"
   if failed host localhost port <%= node[:memcached_upstream][:port] %> then restart
