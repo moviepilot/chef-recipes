@@ -1,0 +1,6 @@
+check process memcached with pidfile <%= node[:memcached_upstream][:pidfle] %>
+  group memcache
+  start program = "/etc/init.d/memcached-upstream start"
+  stop  program = "/etc/init.d/memcached-upstream stop"
+  if failed host localhost port <%= node[:memcached_upstream][:port] %> then restart
+  if 5 restarts within 5 cycles then timeout
