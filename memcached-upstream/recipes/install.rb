@@ -43,11 +43,25 @@ template "/etc/init.d/memcached-upstream" do
   mode "0755"
 end
 
+template "/etc/memcached-upstream.conf" do
+  source "memcached-upstream.conf.erb"
+  owner "root"
+  group "root"
+  mode "0644"
+end
+
 template "/etc/monit/conf.d/memcached-upstream.monitrc" do
   source "memcached-upstream.monitrc.erb"
   owner "root"
   group "root"
   mode  "0644"
+end
+
+template "/opt/memcached-upstream/bin/start-memcached" do
+  source "start-memcached.erb
+  owner "root"
+  group "root"
+  mode  "0755"
 end
 
 execute "update-rc.d memcached-upstream defaults" do

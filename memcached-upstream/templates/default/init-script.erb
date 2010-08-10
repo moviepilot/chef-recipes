@@ -21,8 +21,8 @@
 
 
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-DAEMON=<%= node[:memcached_upstream][:install_dir] %>/bin/memcached
-DAEMONBOOTSTRAP=/usr/share/memcached/scripts/start-memcached
+DAEMON=/opt/memcached/bin/memcached
+DAEMONBOOTSTRAP=/opt/memcached/bin/start-memcached
 NAME=memcached-upstream
 DESC=memcached-upstream
 PIDFILE=<%= node[:memcached_upstream][:pidfile] %>
