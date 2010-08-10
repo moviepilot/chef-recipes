@@ -20,7 +20,7 @@ my $params; my $etchandle; my $etcfile = "/etc/memcached-upstream.conf";
 # This script assumes that memcached is located at /usr/bin/memcached, and
 # that the pidfile is writable at /var/run/memcached.pid
 
-my $memcached = "/opt/memcached-upstream/bin/memcached-upstream";
+my $memcached = "/opt/memcached-upstream/bin/memcached";
 my $pidfile = "<%= node[:memcached_upstream][:pidfile] %>";
 
 # If we don't get a valid logfile parameter in the /etc/memcached.conf file,
