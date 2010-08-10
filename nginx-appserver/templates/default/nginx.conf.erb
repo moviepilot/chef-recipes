@@ -59,4 +59,6 @@ http {
   include sites-enabled/*;
 
 #    worker_rlimit_nofile 50000;
+
+  passenger_root <%=  node[:nginx_appserver][:passenger_root] %>;
 }
