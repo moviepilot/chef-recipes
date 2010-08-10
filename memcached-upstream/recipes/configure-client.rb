@@ -25,7 +25,7 @@ node[:deploy].each do |application, deploy|
     only_if do
       File.directory?("#{deploy[:deploy_to]}/current") && memcached_upstream_server
     end
-    source "database.memcached_upstream.yml.erb"
+    source "memcached_upstream.yml.erb"
     mode "0660"
     group deploy[:group]
     owner deploy[:user]
