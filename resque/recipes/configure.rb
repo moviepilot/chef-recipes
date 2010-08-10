@@ -13,7 +13,9 @@ node[:deploy].each do |application, deploy|
     action :nothing
   end
   
-  redis_server = node[:scalarium][:roles][:redis][:instances].keys.first
+  redis_server = node[:scalarium][:roles][:redis][:instances].keys.first rescue nil
+
+  next unless redis_server  # don't abort if we don't have a redis instance running yet
   
   execute "create config directory" do
     command "mkdir -p #{node[:resque][:resque_config].gsub(/\/[^\/]+$/, '')}"

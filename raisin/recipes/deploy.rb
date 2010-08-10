@@ -1,10 +1,6 @@
 include_recipe "raisin::checkout"
 
 node[:deploy].each do |application, deploy|
-  #execute "create symbolic link to resque config" do
-  #  command "ln -sf #{node[:resque][:resque_config]} #{deploy[:resque_config]}"
-  #end
-  #
   next if deploy[:application] != "raisin"
 
   execute "build raisin" do
@@ -18,11 +14,11 @@ node[:deploy].each do |application, deploy|
 
   execute "stop raisin if it's running" do
     cwd deploy[:current_path]
-    command "./script/stop_raisin_manager.sh #{deploy[:current_path]} #{deploy[:port]}"
+    command "./script/stop_raisin_manager.sh #{deploy[:current_path]} #{node[:raisin][:port]}"
   end
 
   execute "start raisin" do
     cwd deploy[:current_path]
-    command "./script/start_raisin_manager.sh #{deploy[:current_path]} #{deploy[:port]}"
+    command "./script/start_raisin_manager.sh #{deploy[:current_path]} #{node[:raisin][:port]}"
   end
 end

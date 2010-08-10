@@ -12,26 +12,28 @@ node[:deploy].each do |application, deploy|
     action :nothing
   end
   
-  mongo_server = node[:scalarium][:roles][:mongodb][:instances].keys.first
+   mongo_server = node[:scalarium][:roles][:mongodbmaster][:instances].keys.first rescue nil
+ 
+  next unless mongo_server  # don't abort if we don't have a mongo instance running yet
   
 
   execute "create config directory" do
-    command "mkdir -p #{node[:mongodb][:mongodb_config].gsub(/\/[^\/]+$/, '')}"
+    command "mkdir -p #{node[:mongodb][:mongodb_config].gsub(/\/[^\/]+$/, '')}" 
   end
 
   template "#{node[:mongodb][:mongodb_config]}" do
+    only_if do
+      File.directory?("#{deploy[:deploy_to]}/current") && mongo_server
+    end
     source "database.mongo.yml.erb"
     mode "0660"
     group deploy[:group]
     owner deploy[:user]
-    variables :host => node[:scalarium][:roles][:mongodb][:instances][mongo_server][:private_dns_name],
+    variables :host => node[:scalarium][:roles][:mongodbmaster][:instances][mongo_server][:private_dns_name],
               :port => node[:mongodb][:port],
               :database => application
     
     notifies :run, resources(:execute => "restart Rails app #{application}")
     
-    only_if do
-      File.directory?("#{deploy[:deploy_to]}/current")
-    end
   end
 end

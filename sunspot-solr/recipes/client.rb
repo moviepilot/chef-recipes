@@ -7,7 +7,9 @@ node[:deploy].each do |application, deploy|
     action :nothing
   end
  
-  solr_server = node[:scalarium][:roles][:solr][:instances].collect{|instance, names| names["private_dns_name"]}.first
+  solr_server = node[:scalarium][:roles][:solr][:instances].collect{|instance, names| names["private_dns_name"]}.first rescue nil
+
+  next unless solr_server  # don't abort if we don't have a solr instance running yet
 
   execute "create config directory" do
     command "mkdir -p #{node[:sunspot_solr][:discovery_config].gsub(/\/[^\/]+$/, '')}"

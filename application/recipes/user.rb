@@ -7,6 +7,6 @@ node[:deploy].each do |application, deploy|
     gid deploy[:group]
     home deploy[:home]
     supports :manage_home => true
-    shell "/bin/zsh"
+    shell "/bin/sh"
   end
 end

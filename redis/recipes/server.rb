@@ -13,7 +13,7 @@ execute "make" do
 end
 
 user "redis" do
-  shell "/bin/zsh"
+  shell "/bin/sh"
   action :create
 end
 
