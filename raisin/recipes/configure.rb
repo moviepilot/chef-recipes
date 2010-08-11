@@ -17,6 +17,8 @@ node[:deploy].each do |application, deploy|
 
   cluster_state = JSON.load( File.read("/var/lib/scalarium/cluster_state.json") )
 
+  next unless cluster_state["roles"]["raisin"]["instances"].first.last["private_dns_name"],                                                                                                                                                  
+
 
   template "#{node[:raisin][:config_file]}" do
     source "raisin.yml.erb"
