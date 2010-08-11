@@ -4,7 +4,7 @@ include_recipe "deploy" # get the deployment attributes
 
 
 node[:deploy].each do |application, deploy|
-  next if deploy[:application_typ] != 'rails'
+  next if deploy[:application_type] != 'rails'
 
   execute "create config directory" do
     command "mkdir -p #{node[:raisin][:config_file].gsub(/\/[^\/]+$/, '')}"
