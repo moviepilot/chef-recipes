@@ -16,15 +16,16 @@ node[:deploy].each do |application, deploy|
 
 
   cluster_state = JSON.load( File.read("/var/lib/scalarium/cluster_state.json") )
+  host = cluster_state["roles"]["raisin"]["instances"].first.last["private_dns_name"] rescue nil
 
-  next unless cluster_state["roles"]["raisin"]["instances"].first.last["private_dns_name"]
+  next unless host
 
   template "#{node[:raisin][:config_file]}" do
     source "raisin.yml.erb"
     mode "0660"
     group deploy[:group]
     owner deploy[:user]
-    variables :host => cluster_state["roles"]["raisin"]["instances"].first.last["private_dns_name"],
+    variables host,
               :port => node[:raisin][:port]
 
     notifies :run, resources(:execute => "restart Rails app #{application}")
