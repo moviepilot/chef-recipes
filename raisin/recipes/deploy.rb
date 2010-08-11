@@ -21,4 +21,12 @@ node[:deploy].each do |application, deploy|
     cwd deploy[:current_path]
     command "./script/start_raisin_manager.sh #{deploy[:current_path]} #{node[:raisin][:port]}"
   end
+
+
+  next unless node[:config][:setup_raisin]
+
+  execute "fill raisin" do
+    command "screen -d -m #{node[:config][:script]}"
+  end
+
 end
