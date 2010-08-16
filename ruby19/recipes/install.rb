@@ -14,7 +14,7 @@ remote_file "/tmp/ruby19_install/#{node[:ruby19][:package_name]}" do
 end
 
 execute "untar ruby19 archive" do
- command "tar xvfz #{node[:ruby19][:package_name]}"
+ command "tar xjf #{node[:ruby19][:package_name]}"
   cwd "/tmp/ruby19_install"
 end
 
