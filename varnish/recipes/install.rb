@@ -18,7 +18,7 @@ execute "untar varnish archive" do
   cwd "/tmp/varnish_install"
 end
 
-execute "./configure --with-mysql && make && make install" do
+execute "./configure && make && make install" do
   cwd "/tmp/varnish_install/varnish-#{node[:varnish][:version]}"
 end
 
