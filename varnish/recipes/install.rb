@@ -1,4 +1,4 @@
-package "libmysql++-dev" do
+package "pkg-config" do
   action :install
 end
 
