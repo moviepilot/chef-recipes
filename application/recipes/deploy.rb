@@ -8,7 +8,7 @@ node[:deploy].each do |application, deploy|
   end
   execute "bundle" do
     cwd deploy[:release_path]
-    command "cd #{deploy[:current_path]} && bundle install --without test:development"
+    command "cd #{deploy[:current_path]} && bundle install --without test:development:github_ssh"
   end
 
   execute "create symbolic link to discovery config" do
