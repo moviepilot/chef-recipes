@@ -1,11 +1,11 @@
 include_recipe "application::default"
 
 gem_package 'passenger' do
+  gem_binary "#{node[:nginx_appserver][:ruby_path]}/bin/gem"
   version node[:nginx_appserver][:version]
 end
 
 execute "passenger_module" do
-  #command 'echo -en "\n1\n\n\n" | passenger-install-nginx-module'
   command "passenger-install-nginx-module --auto --auto-download --prefix=#{node[:nginx_appserver][:root_dir]}"
 end
 
