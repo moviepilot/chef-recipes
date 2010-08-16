@@ -5,7 +5,8 @@ gem_package 'passenger' do
 end
 
 execute "passenger_module" do
-  command 'echo -en "\n1\n\n\n" | passenger-install-nginx-module'
+  #command 'echo -en "\n1\n\n\n" | passenger-install-nginx-module'
+  command "passenger-install-nginx-module --auto --auto-download --prefix=#{node[:nginx_appserver][:root_dir]}"
 end
 
 [ :log_dir, :cache_dir, :config_dir, :vhost_dir ].each do |dir_name|
