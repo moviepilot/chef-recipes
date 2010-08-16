@@ -1,6 +1,27 @@
-package "pkg-config" do
-  action :install
-end
+package "autoconf"
+package "automake1.9"
+package "autotools-dev"
+package "cvs"
+package "debhelper"
+package "diffstat"
+package "gettext"
+package "html2text"
+package "intltool-debian"
+package "libcroco3"
+package "libltdl-dev"
+package "libltdl7"
+package "libmail-sendmail-perl"
+package "libncurses5-dev"
+package "libsys-hostname-long-perl"
+package "libtool"
+package "libxslt1.1"
+package "m4"
+package "pkg-config"
+package "po-debconf"
+package "quilt"
+package "update-inetd"
+package "xsltproc"
+
 
 directory "/tmp/varnish_install" do
   mode "0755"
