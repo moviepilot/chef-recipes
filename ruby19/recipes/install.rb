@@ -30,6 +30,6 @@ execute "ln -s #{node[:ruby19][:target_dir]} #{node[:ruby19][:link_dir]}" do
   cwd "/opt"
 end
 
-execute "{node[:ruby19][:link_dir]}/bin/gem update --system" do
+execute "#{node[:ruby19][:link_dir]}/bin/gem update --system" do
   cwd "#{node[:ruby19][:link_dir]}"
 end
