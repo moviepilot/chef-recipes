@@ -15,6 +15,11 @@ package "update-inetd"
 
 include_recipe "application::default"
 
+gem_package 'bundler' do
+  gem_binary "#{node[:nginx_appserver][:ruby_path]}/bin/gem"
+  version node[:nginx_appserver][:bundler_version]
+end
+
 gem_package 'passenger' do
   gem_binary "#{node[:nginx_appserver][:ruby_path]}/bin/gem"
   version node[:nginx_appserver][:version]

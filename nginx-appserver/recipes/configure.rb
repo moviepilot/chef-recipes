@@ -6,3 +6,7 @@ template "#{node[:nginx_appserver][:config_dir]}/nginx.conf" do
   mode   0644
 end
 
+execute "monit reload && monit restart nginx-appserver" do
+  action :run
+end
+

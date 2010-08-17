@@ -1,4 +1,4 @@
-check process nginx with pidfile <%= node[:nginx_appserver][:pid_file] %>
+check process nginx-appserver with pidfile <%= node[:nginx_appserver][:pid_file] %>
   start program = "/etc/init.d/nginx start"
   stop  program = "/etc/init.d/nginx stop"
   if failed host 127.0.0.1 port <%= node[:nginx_appserver][:port] %> then restart
