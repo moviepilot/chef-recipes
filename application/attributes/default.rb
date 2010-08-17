@@ -1,6 +1,4 @@
 default[:deploy] = {}
-default[:deploy][:gem_binary]
-default[:deploy][:bundle_binary]
 
 deploy.each do |application, deploy|
   default[:deploy][application] = Mash.new
@@ -20,4 +18,6 @@ deploy.each do |application, deploy|
   default[:deploy][application][:resque_config]  = "#{deploy[:config_dir]}/resque.yml"
   default[:deploy][application][:raisin_config]  = "#{deploy[:config_dir]}/raisin.yml"
   default[:deploy][application][:memcached_upstream_config]  = "#{deploy[:config_dir]}/memcached_upstream.yml"
+  default[:deploy][application][:gem_binary] = '/opt/ruby/bin/gem'
+  default[:deploy][application][:bundle_binary] = '/opt/ruby/bin/bundle'
 end
