@@ -1,7 +1,7 @@
 default[:nginx_appserver] = {}
 default[:nginx_appserver][:version]        = '2.2.15'
-default[:nginx_appserver][:ruby_path]	   = "#{node[:ruby19][:link_dir]}"
-default[:nginx_appserver][:passenger_root] = "#{default[:nginx_appserver][:ruby_path]}/lib/ruby/gems/#{node[:ruby19][:version_major]}/passenger-#{default[:nginx_appserver][:version]}"
+default[:nginx_appserver][:ruby_path]	   = '/opt/ruby'
+default[:nginx_appserver][:passenger_root] = "#{`find #{node[:nginx_appserver][:ruby_path]}/lib/ruby/gems/ -mindepth 1 -maxdepth 1 | head -n 1`.strip}/gems/passenger-#{node[:nginx_appserver][:version]}"
 default[:nginx_appserver][:user]           = 'www-data'
 default[:nginx_appserver][:root_dir]       = '/opt/nginx'
 default[:nginx_appserver][:cache_dir]      = '/var/cache/nginx'
