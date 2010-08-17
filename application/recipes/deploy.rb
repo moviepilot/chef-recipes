@@ -3,12 +3,12 @@ include_recipe "application::checkout"
 node[:deploy].each do |application, deploy|
   next if deploy[:application_type]  != 'rails'
 
-  execute "gem install #{deploy[:current_path]}/vendor/gems/*.gem --no-ri --no-rdoc" do
-	  command "gem install #{deploy[:current_path]}/vendor/gems/*.gem --no-ri --no-rdoc"
+  execute "#{deploy[:gem_binary]} install #{deploy[:current_path]}/vendor/gems/*.gem --no-ri --no-rdoc" do
+	  command "#{deploy[:gem_binary]} install #{deploy[:current_path]}/vendor/gems/*.gem --no-ri --no-rdoc"
   end
   execute "bundle" do
     cwd deploy[:release_path]
-    command "cd #{deploy[:current_path]} && bundle install --without test:development:github_ssh"
+    command "cd #{deploy[:current_path]} && #{deploy[:bundle_binary]} install --without test:development:github_ssh"
   end
 
   execute "create symbolic link to discovery config" do

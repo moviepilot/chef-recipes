@@ -1,4 +1,6 @@
 default[:deploy] = {}
+default[:deploy][:gem_binary]
+default[:deploy][:bundle_binary]
 
 deploy.each do |application, deploy|
   default[:deploy][application] = Mash.new
