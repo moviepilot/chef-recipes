@@ -13,6 +13,8 @@ package "patchutils"
 package "po-debconf"
 package "update-inetd"
 
+include_recipe "ruby19::install"
+node[:nginx_appserver][:passenger_root] = "#{`#{node[:nginx_appserver][:ruby_path]}/bin/gem environment gemdir`.strip}/gems/passenger-#{node[:nginx_appserver][:version]}"
 include_recipe "application::default"
 
 gem_package 'passenger' do

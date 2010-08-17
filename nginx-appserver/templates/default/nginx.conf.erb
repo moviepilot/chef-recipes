@@ -61,4 +61,5 @@ http {
 #    worker_rlimit_nofile 50000;
 
   passenger_root <%=  node[:nginx_appserver][:passenger_root] %>;
+  passenger_ruby <%=  node[:nginx_appserver][:ruby_path] %>/bin/ruby;
 }
