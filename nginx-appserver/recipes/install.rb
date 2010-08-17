@@ -1,3 +1,18 @@
+package "cvs"
+package "debhelper"
+package "dpatch"
+package "gettext"
+package "html2text"
+package "intltool-debian"
+package "libcroco3"
+package "libmail-sendmail-perl"
+package "libpcre3-dev"
+package "libpcrecpp0"
+package "libsys-hostname-long-perl"
+package "patchutils"
+package "po-debconf"
+package "update-inetd"
+
 include_recipe "application::default"
 
 gem_package 'passenger' do
@@ -6,7 +21,7 @@ gem_package 'passenger' do
 end
 
 execute "passenger_module" do
-  command "passenger-install-nginx-module --auto --auto-download --prefix=#{node[:nginx_appserver][:root_dir]}"
+  command "#{node[:nginx_appserver][:ruby_path]}/bin/passenger-install-nginx-module --auto --auto-download --prefix=#{node[:nginx_appserver][:root_dir]}"
 end
 
 [ :log_dir, :cache_dir, :config_dir, :vhost_dir ].each do |dir_name|
