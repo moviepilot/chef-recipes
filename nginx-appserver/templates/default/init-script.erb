@@ -49,13 +49,16 @@ case "$1" in
                 --exec $DAEMON
         echo "$NAME."
         echo -n "Waiting 3 seconds for final kill"
+	sleep 3
         pkill nginx
         ;;
   restart|force-reload)
         echo -n "Restarting $DESC: "
         start-stop-daemon --stop --quiet --pidfile \
                 /var/run/$NAME.pid --exec $DAEMON
-        sleep 1
+        echo -n "Waiting 3 seconds for final kill before restart"
+	sleep 3
+        pkill nginx
         start-stop-daemon --start --quiet --pidfile \
                 /var/run/$NAME.pid --exec $DAEMON -- $DAEMON_OPTS
         echo "$NAME."
