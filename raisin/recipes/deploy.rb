@@ -25,8 +25,20 @@ node[:deploy].each do |application, deploy|
 
   next unless node[:config][:setup_raisin]
 
+  raise "Could not find a ratings dump at #{node[:raisin][:fill_raisin][:dump_file]}" unless File.exists?( node[:raisin][:fill_raisin][:dump_file] )
+
+  template node[:raisin][:fill_raisin][:script] do
+    source "fill_raisin.sh.erb"
+    mode    0755
+
+    variables :log_file => node[:raisin][:fill_raisin][:log_file],
+              :dump_file => node[:raisin][:fill_raisin][:dump_file],
+              :port => node[:raisin][:port]
+
+
+  end
   execute "fill raisin" do
-    command "screen -d -m #{node[:config][:script]}"
+    command "screen -d -m #{node[:config][:fill_raisin][:script]}"
   end
 
 end
