@@ -25,7 +25,7 @@ node[:deploy].each do |application, deploy|
 
   next unless node[:config][:setup_raisin]
 
-  raise "Could not find a ratings dump at #{node[:raisin][:fill_raisin][:dump_file]}" unless File.exists?( node[:raisin][:fill_raisin][:dump_file] )
+  raise "\n\n\n\n\n\n*************************************************************************************\n'setup_raisin' is set but could not find a ratings dump at #{node[:raisin][:fill_raisin][:dump_file]}\n*************************************************************************************\n\n\n\n\n\n" unless File.exists?( node[:raisin][:fill_raisin][:dump_file] )
 
   template node[:raisin][:fill_raisin][:script] do
     source "fill_raisin.sh.erb"
