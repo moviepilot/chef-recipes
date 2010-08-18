@@ -38,7 +38,7 @@ node[:deploy].each do |application, deploy|
 
   end
   execute "fill raisin" do
-    command "screen -d -m #{node[:config][:fill_raisin][:script]}"
+    command "screen -d -m #{node[:raisin][:fill_raisin][:script]}"
   end
 
 end
