@@ -1,5 +1,5 @@
 default[:pen] = {}
-default[:pen][:version]        = '1.8.0'
+default[:pen][:version]        = '0.18.0'
 default[:pen][:user]           = 'pen'
 default[:pen][:port]           = '8080'
 default[:pen][:pid_file]       = '/var/run/pen.pid'
