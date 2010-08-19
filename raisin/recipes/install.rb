@@ -1,3 +1,7 @@
+mem_in_gb=`free -m -g |  grep Mem | sed 's/ [ ]*/ /g' | cut -f2 -d" "`.to_i
+
+raise "\n\n\n\n\n\n*************************************************************************************\nRaisin needs at least 5 Gigs of RAM!!!!\n*************************************************************************************\n\n\n\n\n\n" unless mem_in_gb >= 5
+
 include_recipe "raisin::user"
 include_recipe "raisin::directory"
 
