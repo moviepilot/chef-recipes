@@ -40,3 +40,15 @@ end
 execute "update-rc.d nginx defaults" do
   cwd "/"
 end
+
+execute "mkdir -p /var/log/nginx" do
+  cwd "/"
+end
+
+execute "mkdir -p /etc/nginx/sites-enabled" do
+  cwd "/"
+end
+
+template "/etc/nginx/sites-enabled/default-site" do
+  source "default-site.erb"
+end
