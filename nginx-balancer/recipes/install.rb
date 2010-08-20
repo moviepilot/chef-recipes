@@ -22,11 +22,11 @@ execute "rm #{node[:nginx_balancer][:link_dir]}" do
   only_if "test -L #{node[:nginx_balancer][:link_dir]}"
 end
 
-execute "ln -s #{node[:nginx_balancer][:target_dir]} #{node[:nginx_balancer][:link_dir]}" do
+execute "ln -fs #{node[:nginx_balancer][:target_dir]} #{node[:nginx_balancer][:link_dir]}" do
   cwd "/opt"
 end
 
-execute "ln -s #{node[:nginx_balancer][:link_dir]}/conf /etc/nginx" do
+execute "ln -fs #{node[:nginx_balancer][:link_dir]}/conf /etc/nginx" do
   cwd "/opt"
 end
 
