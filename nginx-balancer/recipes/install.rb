@@ -14,7 +14,7 @@ execute "untar nginx archive" do
   cwd "/tmp/nginx_install"
 end
 
-execute "./configure --prefix=#{node[:nginx][:target_dir]} && make && make install" do
+execute "./configure --prefix=#{node[:nginx][:target_dir]} --with-http_ssl_module --with-http_realip_module --with-http_stub_status_module && make && make install" do
   cwd "/tmp/nginx_install/nginx-#{node[:nginx][:version]}"
 end
 
@@ -23,6 +23,10 @@ execute "rm #{node[:nginx][:link_dir]}" do
 end
 
 execute "ln -s #{node[:nginx][:target_dir]} #{node[:nginx][:link_dir]}" do
+  cwd "/opt"
+end
+
+execute "ln -s #{node[:nginx][:link_dir]}/conf /etc/nginx" do
   cwd "/opt"
 end
 
