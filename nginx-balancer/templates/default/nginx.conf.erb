@@ -15,7 +15,6 @@ http {
     default_type  application/octet-stream;
 
     access_log	  off;
-    proxy_cache_path /home/www-data/cache levels=1:2 keys_zone=www:1m; 
 
     client_header_timeout   1m;
     client_body_timeout     1m;
@@ -24,7 +23,7 @@ http {
     client_header_buffer_size       2k;
     large_client_header_buffers     4 4k;
     request_pool_size               4k;
-#    server_tokens                   off;
+    server_tokens                   off;
 
     gzip on;
     gzip_min_length 1100;
