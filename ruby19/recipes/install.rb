@@ -33,3 +33,7 @@ end
 execute "#{node[:ruby19][:link_dir]}/bin/gem update --system" do
   cwd "#{node[:ruby19][:link_dir]}"
 end
+
+execute "set environment vars" do
+  command 'echo PATH="#{default[:ruby19][:link_dir]}/lib/ruby/gems/#{default[:ruby19][:gems_version]}/bin/:#{default[:ruby19][:link_dir]}/bin/:$PATH"'
+end
