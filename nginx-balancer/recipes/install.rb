@@ -49,6 +49,10 @@ execute "mkdir -p /etc/nginx/sites-enabled" do
   cwd "/"
 end
 
+template "/etc/nginx/nginx.conf" do
+  source "nginx.conf.erb"
+end
+
 template "/etc/nginx/sites-enabled/default-site" do
   source "default-site.erb"
 end
