@@ -15,6 +15,7 @@ node[:deploy].each do |application, deploy|
 end
 
 execute "set environment vars" do
+  command "echo >> /etc/environment"
   command "echo 'RAILS_ENV=production' >> /etc/environment"
 end
 
