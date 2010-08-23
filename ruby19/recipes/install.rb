@@ -1,3 +1,11 @@
+package "libreadline-dev" do
+  action :install
+end
+
+package "libncurses5-dev" do
+  action :install
+end
+
 package "libmysql++-dev" do
   action :install
 end
