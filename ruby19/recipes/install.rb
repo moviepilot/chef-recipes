@@ -43,7 +43,7 @@ execute "#{node[:ruby19][:link_dir]}/bin/gem update --system" do
 end
 
 execute "set environment vars" do
-  command "sed -i -e 's%\\(PATH=\\)%\\1#{node[:ruby19][:link_dir]}/lib/ruby/gems/#{node[:ruby19][:gems_version]}/bin/:#{node[:ruby19][:link_dir]}/bin/%g' -e 's/\"//g' /etc/environment"
+  command "sed -i -e 's%\\(PATH=\\)%\\1#{node[:ruby19][:link_dir]}/lib/ruby/gems/#{node[:ruby19][:gems_version]}/bin/:#{node[:ruby19][:link_dir]}/bin/:%g' -e 's/\"//g' /etc/environment"
 
 end
 
