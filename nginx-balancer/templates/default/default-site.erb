@@ -1,0 +1,23 @@
+upstream backend-default-site-pen {
+        server localhost:8080;
+}
+upstream backend-default-site-varnish {
+        server localhost:6081;
+}
+
+
+server {
+        listen          80;
+
+	proxy_intercept_errors on;
+
+	# configure log format
+	log_format main '$remote_addr - $remote_user [$time_local] "$request" $status $body_bytes_sent "$http_referer" "$http_user_agent" "$http_x_forwarded_for"';
+	access_log /var/log/nginx/default-site.access.log main;
+        error_log  /var/log/nginx/default-site.error.log info;
+	
+        location / {
+        	proxy_pass http://backend-default-site-pen;
+        }
+}
+
