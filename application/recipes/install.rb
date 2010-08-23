@@ -15,11 +15,10 @@ node[:deploy].each do |application, deploy|
 end
 
 execute "add newline" do
-  command "echo "\n" >> /etc/environment"
+  command "echo \"\n\" >> /etc/environment"
 end
 
 execute "set environment vars" do
-  command "echo "\n" >> /etc/environment"
   command "echo 'RAILS_ENV=production' >> /etc/environment"
 end
 
