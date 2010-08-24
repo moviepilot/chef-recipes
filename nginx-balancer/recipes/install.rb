@@ -1,3 +1,26 @@
+# build dependencies for nginx
+package "build-essential"
+package "autotools-dev"
+package "cvs"
+package "debhelper"
+package "dpatch"
+package "gettext"
+package "html2text"
+package "intltool-debian"
+package "libcroco3"
+package "libmail-sendmail-perl"
+package "libpcre3-dev"
+package "libpcrecpp0"
+package "libsys-hostname-long-perl"
+package "patchutils"
+package "po-debconf"
+package "update-inetd"
+# run dependencies for nginx
+package "libpcre3"
+package "libssl0.9.8"
+package "zlib1g"
+
+
 directory "/tmp/nginx_install" do
   mode "0755"
   action :create
