@@ -13,7 +13,7 @@ case "$1" in
     export QUEUE=$queues
     export VERBOSE=1
 
-    nohup /usr/local/bin/rake environment resque:work >> log/resque_worker_$worker.log&
+    nohup rake environment resque:work >> log/resque_worker_$worker.log&
     pid=$!
     if [ "$?" -eq "0" ]; then
       echo $pid > tmp/pids/resque_worker_$worker.pid
