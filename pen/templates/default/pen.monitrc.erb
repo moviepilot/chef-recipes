@@ -1,4 +1,4 @@
-check process pen with pidfile <%= node[:pen][:pidfile] %>
+check process pen with pidfile <%= node[:pen][:pid_file] %>
   start program "/etc/init.d/pen start"
   stop program "/etc/init.d/pen stop"
   if failed port <%= node[:pen][:port] %> then restart
