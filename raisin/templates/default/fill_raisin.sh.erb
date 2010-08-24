@@ -4,4 +4,5 @@ echo "starting import: $(date)" | tee $LOG_FILE
 curl -vT <%= @dump_file %> http://localhost:<%= @port %>/ratings 2>&1 | tee -a $LOG_FILE 
 curl http://localhost:<%= @port %>/status | tee -a $LOG_FILE
 echo "finished import: $(date)" | tee -a $LOG_FILE
+announce "raisin is full fully full now!" || true
 

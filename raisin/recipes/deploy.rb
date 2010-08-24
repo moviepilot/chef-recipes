@@ -22,6 +22,9 @@ node[:deploy].each do |application, deploy|
     command "./script/start_raisin_manager.sh #{deploy[:current_path]} #{node[:raisin][:port]}"
   end
 
+  execute "announce that I am up and running" do
+    command "announce 'yiiihaaaa ... raisin is deployed' || true"
+  end
 
   next unless node[:config][:setup_raisin]
 
@@ -37,6 +40,11 @@ node[:deploy].each do |application, deploy|
 
 
   end
+
+  execute "announce that raisin is going to be filled up" do
+    command "announce 'going to fill raisin with stuff now ....' || true"
+  end
+
   execute "fill raisin" do
     command "screen -d -m #{node[:raisin][:fill_raisin][:script]}"
   end
