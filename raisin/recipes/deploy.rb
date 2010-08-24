@@ -23,7 +23,7 @@ node[:deploy].each do |application, deploy|
   end
 
   execute "announce that I am up and running" do
-    command "announce 'yiiihaaaa ... raisin is deployed' || true"
+    command "announce 'it's me, raisin: somebody set me up!' || true"
   end
 
   next unless node[:config][:setup_raisin]
