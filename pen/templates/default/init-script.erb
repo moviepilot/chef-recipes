@@ -9,11 +9,15 @@ SCRIPTNAME=/etc/init.d/$NAME
 BALANCERPORT=8080
 CONTROLPORT=8081
 
+ROLE=`cat /etc/role`
+
+
 
 case "$1" in
   start)
 	echo "Starting $DESC" "$NAME"
 	${DAEMON} -p ${PIDFILE} -XC ${CONTROLPORT} ${BALANCERPORT}
+	scalper exec application::configure-${ROLE}
 	;;
   stop)
 	echo "Stopping $DESC" "$NAME"
@@ -28,6 +32,7 @@ case "$1" in
 	sleep 2
 	echo "Starting $DESC" "$NAME"
 	${DAEMON} -p ${PIDFILE} -XC ${CONTROLPORT} ${BALANCERPORT}
+	scalper exec application::configure-${ROLE}
 	;;
   *)
 	echo "Usage: $SCRIPTNAME {start|stop|status|restart}" >&2
