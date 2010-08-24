@@ -22,8 +22,9 @@ node[:deploy].each do |application, deploy|
     command "./script/start_raisin_manager.sh #{deploy[:current_path]} #{node[:raisin][:port]}"
   end
 
+  MY_IP=`curl -s http://whatismyip.org/`.strip
   execute "announce that I am up and running" do
-    command "announce 'it's me, raisin: somebody set me up!' || true"
+    command "announce 'it is me, raisin: somebody set me up -- I am up and running! ... see for yourself with: ssh ubuntu@#{MY_IP}' || true"
   end
 
   next unless node[:config][:setup_raisin]
