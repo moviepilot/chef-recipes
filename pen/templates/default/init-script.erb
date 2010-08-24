@@ -1,0 +1,37 @@
+#! /bin/sh
+PATH=/sbin:/usr/sbin:/bin:/usr/bin
+DESC="pen balancing server"
+NAME=pen
+DAEMON=/opt/pen/bin/$NAME
+DAEMONCTL=/opt/pen/bin/${NAME}ctl
+PIDFILE=/var/run/$NAME-8080.pid
+SCRIPTNAME=/etc/init.d/$NAME
+BALANCERPORT=8080
+CONTROLPORT=8081
+
+
+case "$1" in
+  start)
+	echo "Starting $DESC" "$NAME"
+	${DAEMON} -p ${PIDFILE} -XC ${CONTROLPORT} ${BALANCERPORT}
+	;;
+  stop)
+	echo "Stopping $DESC" "$NAME"
+	${DAEMONCTL} localhost:${CONTROLPORT} exit
+	;;
+  status)
+	${DAEMONCTL} localhost:${CONTROLPORT} status | w3m -dump -T text/html
+       ;;
+  restart|force-reload)
+	echo "Stopping $DESC" "$NAME"
+	${DAEMONCTL} localhost:${CONTROLPORT} exit
+	sleep 2
+	echo "Starting $DESC" "$NAME"
+	${DAEMON} -p ${PIDFILE} -XC ${CONTROLPORT} ${BALANCERPORT}
+	;;
+  *)
+	echo "Usage: $SCRIPTNAME {start|stop|status|restart}" >&2
+	exit 3
+	;;
+esac
+

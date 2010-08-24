@@ -25,3 +25,15 @@ end
 execute "ln -s #{node[:pen][:target_dir]} #{node[:pen][:link_dir]}" do
   cwd "/opt"
 end
+
+template "/etc/init.d/pen" do
+  source "init-script.erb"
+  owner "root"
+  group "root"
+  mode "0755"
+end
+
+execute "update-rc.d pen defaults" do
+  cwd "/"
+end
+
