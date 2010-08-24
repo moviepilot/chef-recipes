@@ -9,6 +9,6 @@ cl.connect
 cl.auth(password)
 
 chat_room = Jabber::MUC::SimpleMUCClient.new(cl)
-chat_room.join(Jabber::JID.new("<%= @room %>"))
+chat_room.join(Jabber::JID.new("<%= @room %>@#{`uname -n`}"))
 chat_room.say(ARGV.join(" "))
 cl.close
