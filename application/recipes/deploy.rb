@@ -37,7 +37,7 @@ node[:deploy].each do |application, deploy|
     group  "root"
     mode   "0755"
 
-    variables :resque_config => deploy[:resque_config]
+    variables :resque_config => deploy[:resque_initializer]
   end
 
 end
