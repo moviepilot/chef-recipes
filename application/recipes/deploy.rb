@@ -31,7 +31,7 @@ node[:deploy].each do |application, deploy|
     command "ln -sf #{node[:raisin][:config_file]} #{deploy[:raisin_config]}"
   end
 
-  template "/etc/init.de/resque-web" do
+  template "/etc/init.d/resque-web" do
     source "init-script.erb"
     owner  "root"
     group  "root"
