@@ -3,11 +3,11 @@ gem_package "xmpp4r" do
   retries 2
 end
 
-[:"xmpp_user", :"xmpp_password", :"xmpp_chat_room"] do |variable|
+[:"xmpp_user", :"xmpp_password", :"xmpp_chat_room"].each do |variable|
   raise "please set node[:config][:announcer][:#{variable}] in order to user announcer" unless node[:config][:announcer][variable]
 end
 
-template "/bin/announce" do
+template "/usr/bin/announce" do
   source "announce.rb.erb"
   owner 'root'
   group 'root'
