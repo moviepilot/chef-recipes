@@ -17,6 +17,7 @@ deploy.each do |application, deploy|
   default[:deploy][application][:mongodb_config]  = "#{deploy[:config_dir]}/discovery.yml"
   default[:deploy][application][:discovery_config]  = "#{deploy[:config_dir]}/database.mongo.yml"
   default[:deploy][application][:resque_config]  = "#{deploy[:config_dir]}/resque.yml"
+  default[:deploy][application][:resque_initializer]  = "#{deploy[:config_dir]}/initializers/resque.rb"
   default[:deploy][application][:raisin_config]  = "#{deploy[:config_dir]}/raisin.yml"
   default[:deploy][application][:memcached_upstream_config]  = "#{deploy[:config_dir]}/memcached_upstream.yml"
   default[:deploy][application][:gem_binary] = '/opt/ruby/bin/gem'

@@ -79,3 +79,13 @@ end
 template "/etc/nginx/sites-enabled/default-site" do
   source "default-site.erb"
 end
+
+template "/etc/monit/conf.d/nginx_balancer.monitrc" do
+  source "nginx.monitrc.erb"
+  mode   0644
+end
+
+execute "monit reload && monit restart nginx-balancer" do
+  action :run
+end
+
