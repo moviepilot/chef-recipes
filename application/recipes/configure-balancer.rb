@@ -10,7 +10,7 @@ ruby_block "reset remaining balancer connections" do
   block do
    instancesize=node["scalarium"]["roles"][ node[:app_identifier] ]["instances"].size
    (instancesize..15).each do |i|
-      system("/opt/pen/bin/penctl localhost:8081 server #{i} address 0.0.0.0 port 80")
+      system("/opt/pen/bin/penctl localhost:8081 server #{i} address 0.0.0.0 port 0")
    end
   end
   action :create
