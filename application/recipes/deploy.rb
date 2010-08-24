@@ -30,4 +30,14 @@ node[:deploy].each do |application, deploy|
   execute "create symbolic link to raisin config" do
     command "ln -sf #{node[:raisin][:config_file]} #{deploy[:raisin_config]}"
   end
+
+  template "/etc/init.d/resque-web" do
+    source "init-script.erb"
+    owner  "root"
+    group  "root"
+    mode   "0755"
+
+    variables :resque_config => deploy[:resque_initializer]
+  end
+
 end

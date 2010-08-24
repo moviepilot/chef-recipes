@@ -25,5 +25,5 @@ end
 include_recipe "application::deploy"
 
 execute "announce that I am up and running" do
-  command "announce hey hoh ... I am up and running || true"
+  command "announce hey hoh ... I am a rails app server and I am up and running || true"
 end
