@@ -37,3 +37,13 @@ execute "update-rc.d pen defaults" do
   cwd "/"
 end
 
+template "/etc/monit/conf.d/pen.monitrc" do
+  source "pen.monitrc.erb"
+  owner "root"
+  group "root"
+  mode  "0644"
+end
+
+execute "monit reload && monit restart pen" do
+  action :run
+end
