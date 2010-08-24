@@ -1,0 +1,5 @@
+check process pen with pidfile <%= node[:pen][:pidfile] %>
+  start program "/etc/init.d/pen start"
+  stop program "/etc/init.d/pen stop"
+  if failed port <%= node[:pen][:port] %> then restart
+  if 5 restarts within 5 cycles then timeout
