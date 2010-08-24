@@ -40,4 +40,21 @@ node[:deploy].each do |application, deploy|
     variables :resque_config => deploy[:resque_initializer]
   end
 
+  execute "(re-)start resque-web" do
+    command "/etc/init.d/resque-web restart"
+  end
+
+  MY_IP=`curl -s http://whatismyip.org/`.strip
+
+  execute "announce resque web" do 
+    command "announce 'yo man: see me working as resque-web is up and at your service ... but listen closely: it is only accessible using an ssh tunnel:' || true"
+  end
+
+  execute "announce resque web tunnel command" do 
+    command "announce '    ssh -L8765:127.0.0.1:5678  -p 22 -N -t -x ubuntu@#{MY_IP}' || true"
+  end
+
+  execute "announce resque local address" do 
+    command "announce '    and then go to: http://localhost:8765 ... and be impressed' || true"
+  end
 end
