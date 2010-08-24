@@ -1,4 +1,5 @@
 default[:deploy] = {}
+default[:app_identifier] = "app"
 
 deploy.each do |application, deploy|
   default[:deploy][application] = Mash.new
