@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+require 'xmpp4r/client'
+require 'xmpp4r/muc'
+include Jabber
+jid = JID::new("<%= @user %>")
+password = "<%= @passwd %>"
+cl = Client::new(jid)
+cl.connect
+cl.auth(password)
+
+chat_room = Jabber::MUC::SimpleMUCClient.new(cl)
+chat_room.join(Jabber::JID.new("<%= @room %>"))
+chat_room.say("$*")
+cl.close
