@@ -1,0 +1,33 @@
+This recipe sends announcements to a Jabber chat room. It needs some configuration settings in the scalarium cloud:
+
+- the registered xmpp user name
+- the users password
+- a chat room
+
+{
+   "config":{
+      "setup_raisin":true,
+      "announcer":{
+         "xmpp_user":"<user>@<jabberserver>/<jabberresource>",
+         "xmpp_password":"<users password>",
+         "xmpp_chat_room":"<chat room name>@<chat room server>/<nickname to be displayed in the chatroom>"
+      }
+   }
+}
+
+When this recipe is installed, you will have an executable at
+
+/usr/bin/announce
+
+that can be called with:
+
+announce <the message to send out>
+
+---------
+
+in other chef template, call the script like this:
+
+
+execute "announce that I am up and running" do
+  command "announce 'yiiihaaa ... I am up and running' || true"
+end
