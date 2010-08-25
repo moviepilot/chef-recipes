@@ -47,6 +47,6 @@ node[:deploy].each do |application, deploy|
   MY_IP=`curl -s http://whatismyip.org/`.strip
 
   execute "announce deployment" do 
-    command "announce 'hey: moviepilot was deployed successfully at http://#{MY_IP} ... for resque intructions see http://#{MY_IP}/resque-web.txt' || true"
+    command "announce 'hey: moviepilot was deployed successfully at http://#{MY_IP} ... for accessing resque-web see http://#{MY_IP}/resque-web.txt ; ssh to it with         ssh ubuntu@#{MY_IP}' || true"
   end
 end
