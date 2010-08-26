@@ -103,6 +103,11 @@ template "/etc/default/varnishncsa" do
   mode  "0644"
 end
 
+
+execute "chown -R #{node[:varnish][:user]}:#{node[:varnish][:group]}  #{node[:varnish][:link_dir]}/var/varnish" do
+  action :run
+end
+
 execute "monit reload && monit restart varnish" do
   action :run
 end
