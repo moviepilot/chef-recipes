@@ -71,6 +71,17 @@ template "/etc/monit/conf.d/varnish.monitrc" do
   mode  "0644"
 end
 
+execute "mkdir /etc/varnish"
+   cwd "/"
+end
+
+template "/etc/varnish/default.vcl" do
+  source "default.vcl.erb"
+  owner "root"
+  group "root"
+  mode  "0644"
+end
+
 execute "monit reload && monit restart varnish" do
   action :run
 end
