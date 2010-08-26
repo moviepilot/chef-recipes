@@ -71,7 +71,7 @@ template "/etc/monit/conf.d/varnish.monitrc" do
   mode  "0644"
 end
 
-execute "mkdir /etc/varnish"
+execute "mkdir /etc/varnish" do
    cwd "/"
 end
 
