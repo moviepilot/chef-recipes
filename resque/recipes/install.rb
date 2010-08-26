@@ -23,3 +23,5 @@ template '/usr/local/sbin/resquectl' do
   owner 'root'
   group 'root'
 end
+
+include_recipe "resque::deploy"
