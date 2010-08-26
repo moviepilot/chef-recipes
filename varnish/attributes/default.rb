@@ -5,3 +5,6 @@ default[:varnish][:memory_limit] = "256M"
 default[:varnish][:port] = 9312
 default[:varnish][:target_dir]     = "/opt/varnish-#{node[:varnish][:version]}"
 default[:varnish][:link_dir]       = "/opt/varnish"
+default[:varnish][:user]       = "www-data"
+default[:varnish][:group]       = "www-data"
+default[:varnish][:storage_size]       = "1G"
