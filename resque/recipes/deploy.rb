@@ -7,5 +7,5 @@ node[:deploy].each do |application, deploy|
               :application => application
   end
 
-  execute "monit reload && sleep 10 && monit restart -g resque_workers_#{application}"
+  execute "monit reload && sleep 60 && monit restart -g resque_workers_#{application}"
 end
