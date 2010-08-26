@@ -1,0 +1,4 @@
+check process nginx-balancer with pidfile <%= node[:nginx_balancer][:pid_file] %>
+  start program = "/etc/init.d/nginx start"
+  stop  program = "/etc/init.d/nginx stop"
+  if failed host 127.0.0.1 port <%= node[:nginx_balancer][:port] %> then restart
