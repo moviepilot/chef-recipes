@@ -41,7 +41,8 @@ node[:deploy].each do |application, deploy|
   end
 
   execute "(re-)start resque-web" do
-    command "HOME=/tmp /etc/init.d/resque-web restart"
+    environment "HOME" => "/tmp"
+    command "/etc/init.d/resque-web restart"
   end
 
   MY_IP=`curl -s http://whatismyip.org/`.strip
