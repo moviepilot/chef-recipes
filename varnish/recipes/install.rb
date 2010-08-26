@@ -41,7 +41,39 @@ execute "untar varnish archive" do
   cwd "/tmp/varnish_install"
 end
 
-execute "./configure && make && make install" do
+execute "./configure --prefix=#{node[:varnish][:target_dir]} && make && make install" do
   cwd "/tmp/varnish_install/varnish-#{node[:varnish][:version]}"
 end
+
+execute "rm #{node[:varnish][:link_dir]}" do
+  only_if "test -L #{node[:varnish][:link_dir]}"
+end
+
+execute "ln -s #{node[:varnish][:target_dir]} #{node[:varnish][:link_dir]}" do
+  cwd "/opt"
+end
+
+template "/etc/init.d/varnish" do
+  source "init-script.erb"
+  owner "root"
+  group "root"
+  mode "0755"
+end
+
+execute "update-rc.d varnish defaults" do
+  cwd "/"
+end
+
+template "/etc/monit/conf.d/varnish.monitrc" do
+  source "varnish.monitrc.erb"
+  owner "root"
+  group "root"
+  mode  "0644"
+end
+
+execute "monit reload && monit restart varnish" do
+  action :run
+end
+
+
 
