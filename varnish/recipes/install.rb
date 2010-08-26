@@ -82,6 +82,27 @@ template "/etc/varnish/default.vcl" do
   mode  "0644"
 end
 
+template "/etc/default/varnish" do
+  source "varnish-default.erb"
+  owner "root"
+  group "root"
+  mode  "0644"
+end
+
+template "/etc/default/varnishlog" do
+  source "varnishlog-default.erb"
+  owner "root"
+  group "root"
+  mode  "0644"
+end
+
+template "/etc/default/varnishncsa" do
+  source "varnishncsa-default.erb"
+  owner "root"
+  group "root"
+  mode  "0644"
+end
+
 execute "monit reload && monit restart varnish" do
   action :run
 end
