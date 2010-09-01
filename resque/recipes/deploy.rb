@@ -1,5 +1,6 @@
 node[:deploy].each do |application, deploy|
   redis_worker_config = YAML.load_file "#{deploy['deploy_to']}/#{node[:resque][:resque_worker_config]}" rescue next
+  execute "monit stop all -g resque_workers_#{application} && sleep 60"
   execute "rm /etc/monit/conf.d/resque_#{application}*.monitrc"
   
   redis_worker_config['queues'].each do |queue|
@@ -14,5 +15,5 @@ node[:deploy].each do |application, deploy|
     end
   end
   
-  execute "monit reload && sleep 60 && monit restart -g resque_workers_#{application}"
+  execute "monit reload && monit start -g resque_workers_#{application}"
 end
