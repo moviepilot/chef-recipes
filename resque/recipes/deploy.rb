@@ -15,5 +15,5 @@ node[:deploy].each do |application, deploy|
     end
   end
   
-  execute "monit reload && monit start -g resque_workers_#{application}"
+  execute "monit reload && sleep 10 && monit start -g resque_workers_#{application}"
 end
