@@ -37,6 +37,7 @@ node[:deploy].each do |application, deploy|
 
     variables :log_file => node[:raisin][:fill_raisin][:log_file],
               :dump_file => node[:raisin][:fill_raisin][:dump_file],
+              :timeout => node[:raisin][:timeout],
               :port => node[:raisin][:port]
 
 
