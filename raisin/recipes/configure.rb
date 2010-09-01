@@ -28,7 +28,8 @@ node[:deploy].each do |application, deploy|
     group deploy[:group]
     owner deploy[:user]
     variables :host => host,
-              :port => node[:raisin][:port]
+              :port => node[:raisin][:port],
+              :timeout => node[:raisin][:timeout]
 
     notifies :run, resources(:execute => "restart Rails app #{application}")
 
