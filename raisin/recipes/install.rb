@@ -29,6 +29,7 @@ end
 
 
 package "maven2"
+package "htop"
 
 node[:deploy].each do |application, deploy|
   # create shared/ directory structure
