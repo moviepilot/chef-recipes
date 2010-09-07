@@ -24,7 +24,7 @@ node[:deploy].each do |application, deploy|
     action deploy[:action]
     restart_command "sleep #{deploy[:sleep_before_restart]} && #{deploy[:restart_command]}"
     scm_provider Chef::Provider::Git
-    # enable_submodules true
+    enable_submodules true
     shallow_clone true
   end
 end
