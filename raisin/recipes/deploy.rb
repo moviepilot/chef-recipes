@@ -1,7 +1,7 @@
 include_recipe "raisin::checkout"
 
 node[:deploy].each do |application, deploy|
-  next if deploy[:application] != "raisin"
+  next unless deploy[:application] == "raisin" || deploy[:application] == node[:config][:raisin_app_name]
 
   execute "build raisin" do
     cwd deploy[:current_path]
