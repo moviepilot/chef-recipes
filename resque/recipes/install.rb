@@ -24,4 +24,11 @@ template '/usr/local/sbin/resquectl' do
   group 'root'
 end
 
+template '/usr/local/sbin/resque-schedule' do
+  source 'resque-schedule.erb'
+  mode 0755
+  owner 'root'
+  group 'root'
+end
+
 include_recipe "resque::deploy"

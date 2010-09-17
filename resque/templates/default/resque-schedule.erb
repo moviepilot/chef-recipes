@@ -1,0 +1,24 @@
+#!/bin/sh
+. /etc/environment
+app=$2
+
+cd $app/current
+
+case "$1" in
+  start)
+    env=$3
+    export RAILS_ENV=$env
+    export VERBOSE=1
+
+    nohup rake environment resque:schedule >> log/resque_schedule_worker.log&
+    pid=$!
+    if [ "$?" -eq "0" ]; then
+      echo $pid > tmp/pids/resque_schedule_worker.pid
+    fi
+    ;;
+  stop)
+    kill -s QUIT `cat tmp/pids/resque_schedule_worker.pid` && rm -f tmp/pids/resque_schedule_worker.pid
+    ;;
+esac
+
+exit 0
