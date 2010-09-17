@@ -11,8 +11,15 @@ node[:deploy].each do |application, deploy|
       variables :queue_name    => queue_name,
                 :worker_amount => queue['worker'],
                 :deploy        => deploy,
-                :application   => application,
-                :has_scheduler => node[:resque][:has_scheduler]
+                :application   => application
+    end
+  end
+  
+  if node[:resque][:has_scheduler]
+    template "/etc/monit/conf.d/resque_schedule_worker_#{application}.monitrc" do
+      source "resque-scheduler.monit.erb"
+      variables :deploy        => deploy,
+                :application   => application
     end
   end
   
