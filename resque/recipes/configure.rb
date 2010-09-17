@@ -28,8 +28,7 @@ node[:deploy].each do |application, deploy|
     owner deploy[:user]
     variables :host => node[:scalarium][:roles][:redis][:instances][redis_server][:private_dns_name],
               :deploy => deploy,
-              :application => application,
-              :has_scheduler => node[:resque][:has_scheduler]
+              :application => application
     
     if deploy[:stack][:needs_reload]
       notifies :run, resources(:execute => "restart Rails app #{application}")

@@ -11,7 +11,8 @@ node[:deploy].each do |application, deploy|
       variables :queue_name    => queue_name,
                 :worker_amount => queue['worker'],
                 :deploy        => deploy,
-                :application   => application
+                :application   => application,
+                :has_scheduler => node[:resque][:has_scheduler]
     end
   end
   
