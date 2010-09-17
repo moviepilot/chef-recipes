@@ -5,3 +5,4 @@ default[:resque][:web] = {}
 default[:resque][:web][:enabled] = true
 default[:resque][:resque_config] = "/etc/rails/resque.yml"
 default[:resque][:resque_worker_config] = "./current/config/resque_worker.yml"
+default[:resque][:has_scheduler] = true

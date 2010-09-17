@@ -7,9 +7,11 @@ check process resque_worker_<%= @application %><%= @queue_name %>_<%= worker %>
   group resque_workers_<%= @application %>
 <% end %>
 
+<% if has_scheduler %>
 check process resque_schedule_worker_<%= @application %>
   with pidfile <%= @deploy[:deploy_to] %>/current/tmp/pids/resque_schedule_worker.pid
   start program = "/usr/local/sbin/resque-schedule start <%= @deploy[:deploy_to] %> <%= @deploy[:rails_env] %> as uid <%= @deploy[:user] %> and gid <%= @deploy[:group] %>
   stop program = "/usr/local/sbin/resque-schedule stop <%= @deploy[:deploy_to] %>
   if totalmem is greater than <%= node[:resque][:max_memory] %> MB for 10 cycles then restart
   group resque_workers_<%= @application %>
+<% end %>
