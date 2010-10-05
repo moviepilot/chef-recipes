@@ -3,6 +3,8 @@ include_recipe 'ruby19::install'
 
 package 'libxml2'
 package 'libxml2-dev'
+package 'libxslt1.1' 
+package 'libxslt1-dev'
 
 template "/root/.bashrc" do
   source "bashrc.erb"
