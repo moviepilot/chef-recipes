@@ -3,6 +3,10 @@ include_recipe "application::checkout"
 node[:deploy].each do |application, deploy|
   next if deploy[:application_type]  != 'rails'
 
+  execute "some log message" do
+    command 'echo -e "just to let you know: #{deploy[:current_path]} expands to $(readlink -f #{deploy[:current_path]})"'
+  end
+
   execute "#{deploy[:gem_binary]} install #{deploy[:current_path]}/vendor/gems/*.gem --no-ri --no-rdoc" do
 	  command "#{deploy[:gem_binary]} install #{deploy[:current_path]}/vendor/gems/*.gem --no-ri --no-rdoc"
   end
