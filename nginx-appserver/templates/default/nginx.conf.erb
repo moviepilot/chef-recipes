@@ -1,5 +1,5 @@
 user <%= node[:nginx_appserver][:user] %>;
-worker_processes  3;
+worker_processes 4;
 worker_rlimit_nofile 16000;
 
 error_log  <%= node[:nginx_appserver][:error_log] %>;
@@ -62,4 +62,6 @@ http {
 
   passenger_root <%=  node[:nginx_appserver][:passenger_root] %>;
   passenger_ruby <%=  node[:nginx_appserver][:ruby_path] %>/bin/ruby;
+  passenger_max_pool_size 20;
+  passenger_pool_idle_time 3600;
 }
