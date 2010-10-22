@@ -1,4 +1,10 @@
 node[:deploy].each do |application, deploy|
+  unless application.match(/raisin/)
+    Chef::Log.info("raisin::checkout skipping non-raisin app: #{application}")
+    next
+  else
+    Chef::Log.info("raisin::checkout checking out #{application}")
+  end
   
   ensure_scm_package_installed(deploy[:scm][:scm_type])
   
