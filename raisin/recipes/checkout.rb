@@ -1,5 +1,5 @@
 node[:deploy].each do |application, deploy|
-  if application.match('raisin')
+  unless application.match(/raisin/)
     Chef::Log.info("raisin::checkout skipping non-raisin app: #{application}")
     next
   else
