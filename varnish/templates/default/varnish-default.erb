@@ -22,10 +22,10 @@ MEMLOCK=82000
 # one content server selected by the vcl file, based on the request.  Use a 1GB
 # fixed-size cache file.
 #
-DAEMON_OPTS="-a localhost:6081 \
+DAEMON_OPTS="-a :6081 \
              -T localhost:6082 \
              -f /etc/varnish/default.vcl \
-	     -u <%= node[:varnish][:user] %> -g <%= node[:varnish][:group] %> \
+	           -u <%= node[:varnish][:user] %> -g <%= node[:varnish][:group] %> \
              -s malloc,<%= node[:varnish][:storage_size] %>"
 
 #             -s file,/opt/varnish/var/varnish/varnish_storage.bin,<%= node[:varnish][:storage_size] %>"
