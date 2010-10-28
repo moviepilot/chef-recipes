@@ -17,7 +17,7 @@ server {
         error_log  /var/log/nginx/default-site.error.log info;
 	
         location / {
-        	proxy_pass http://backend-default-site-pen;
+          proxy_pass http://backend-default-site-<%= @config %>;
         }
 }
 

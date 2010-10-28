@@ -6,4 +6,5 @@ default[:nginx_balancer][:target_dir] = "/opt/nginx-#{node[:nginx_balancer][:ver
 default[:nginx_balancer][:link_dir] = "/opt/nginx"
 default[:nginx_balancer][:pid_file]       = '/var/run/nginx.pid'
 default[:nginx_balancer][:port]           = '80'
+default[:nginx_balancer][:config]         = 'pen'
 

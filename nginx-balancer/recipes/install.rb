@@ -78,6 +78,7 @@ end
 
 template "/etc/nginx/sites-enabled/default-site" do
   source "default-site.erb"
+    variables :config => node[:nginx_balancer][:config]
 end
 
 template "/etc/monit/conf.d/nginx_balancer.monitrc" do
