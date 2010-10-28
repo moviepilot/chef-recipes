@@ -26,7 +26,7 @@ DAEMON_OPTS="-a localhost:6081 \
              -T localhost:6082 \
              -f /etc/varnish/default.vcl \
 	     -u <%= node[:varnish][:user] %> -g <%= node[:varnish][:group] %> \
-#             -s file,/opt/varnish/var/varnish/varnish_storage.bin,<%= node[:varnish][:storage_size] %>"
              -s malloc,<%= node[:varnish][:storage_size] %>"
 
+#             -s file,/opt/varnish/var/varnish/varnish_storage.bin,<%= node[:varnish][:storage_size] %>"
 
