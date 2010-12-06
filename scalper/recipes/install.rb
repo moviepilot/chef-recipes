@@ -1,5 +1,5 @@
-execute "curl https://github.com/moviepilot/scalper/raw/master/scalper-installer > /tmp/scalper-installer" do
-    command "curl https://github.com/moviepilot/scalper/raw/master/scalper-installer > /tmp/scalper-installer"
+execute "wget --no-check-certificate https://github.com/moviepilot/scalper/raw/master/scalper-installer -O /tmp/scalper-installer" do
+    command "wget --no-check-certificate https://github.com/moviepilot/scalper/raw/master/scalper-installer -O /tmp/scalper-installer"
     action :run
 end
 
