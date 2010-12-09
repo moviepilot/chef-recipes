@@ -1,6 +1,7 @@
 include_recipe 'scalper::install'
 include_recipe 'ruby19::install'
 
+package 'syslog-ng'
 package 'libxml2'
 package 'libxml2-dev'
 package 'libxslt1.1' 
