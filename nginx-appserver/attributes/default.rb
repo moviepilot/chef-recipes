@@ -1,5 +1,5 @@
 default[:nginx_appserver] = {}
-default[:nginx_appserver][:version]        = '2.2.15'
+default[:nginx_appserver][:version]        = '3.0.2'
 default[:nginx_appserver][:ruby_path]	   = '/opt/ruby'
 default[:nginx_appserver][:user]           = 'www-data'
 default[:nginx_appserver][:root_dir]       = '/opt/nginx'
