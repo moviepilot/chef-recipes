@@ -1,3 +1,7 @@
+execute "rm -rf /opt/ruby/lib/ruby/site_ruby/1.9.1/" do
+  command "rm -rf /opt/ruby/lib/ruby/site_ruby/1.9.1/"
+end
+
 remote_file "/tmp/rubygems-#{node[:bundler][:gems_version]}.tgz" do
   source "http://production.cf.rubygems.org/rubygems/rubygems-#{node[:bundler][:gems_version]}.tgz"
   not_if do
