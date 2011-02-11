@@ -10,7 +10,7 @@ case "$1" in
     export RAILS_ENV=$env
     export VERBOSE=1
 
-    nohup rake environment resque:schedule >> log/resque_schedule_worker.log&
+    nohup rake environment resque:scheduler >> log/resque_schedule_worker.log&
     pid=$!
     if [ "$?" -eq "0" ]; then
       echo $pid > tmp/pids/resque_schedule_worker.pid
